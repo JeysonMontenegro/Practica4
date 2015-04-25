@@ -12,6 +12,7 @@ Dist_Rutas_Buses=require('./routes/Dist_Rutas_Buses'),
 Reserva_Ticket=require('./routes/Reserva_Ticket'),
 Pago_Ticket=require('./routes/Pago_Ticket'),
 Consulta_Viajes=require('./routes/Consulta_Viajes');
+ManualTecnico=require('./routes/ManualTecnico');
 var socket = require('socket.io');
 var pg = require('pg');
 
@@ -49,6 +50,7 @@ app.use('/Dist_Rutas_Buses', Dist_Rutas_Buses);
 app.use('/Reserva_Ticket', Reserva_Ticket);
 app.use('/Consulta_Viajes', Consulta_Viajes);
 app.use('/Pago_Ticket', Pago_Ticket);
+app.use('/ManualTecnico', ManualTecnico);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -152,23 +154,6 @@ socket.on('Q5', function (data1) {
  		 });
 		});     
 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	

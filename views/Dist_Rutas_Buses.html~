@@ -129,15 +129,16 @@
 		  var destino =$('#destino1').val();
  		 var distancia =$('#distancia').val();
 		 var tramo =$('#tramo').val();
-		 var query='INSERT INTO RUTA_DESTINO(ID_RUTA,ID_DESTINO,NO_TRAMO,TIEMPO_ORIGEN,DISTANCIA_ORIGEN) VALUES(\''+ruta+'\',\''+destino+'\',\''+tramo+'\',11:30,\''+distancia+'\');';
+		 var query='INSERT INTO RUTA_DESTINO(ID_RUTA,ID_DESTINO,NO_TRAMO,TIEMPO_ORIGEN,DISTANCIA_ORIGEN) VALUES(\''+ruta+'\',\''+destino+'\',\''+tramo+'\',\'11:30\',\''+distancia+'\');';
 		alert(query);
-		//socket.emit('Query4', {msg:query});
+		socket.emit('Query4', {msg:query});
 	}
 	function AgregarDestinoBR(){
-		//var bus2 =$('#bus2').val();
-		//var ruta2 =$('#ruta2').val();
- 		//var fecha =$('#fecha').val();
-		//var query='Insert Into ASignacion_Ruta(ID_Ruta,ID_BUs,FEcha,Cupo_Actual) Values(\''+ruta2+'\',\''+bus2+'\',to_date(\''+fecha+'\', \'dd/mm/yyyy\'),30);';
+		var bus2 =$('#bus2').val();
+		var ruta2 =$('#ruta2').val();
+ 		var fecha =$('#fecha').val();
+		var query='Insert Into ASignacion_Ruta(ID_Ruta,ID_BUs,FEcha,Cupo_Actual) Values(\''+ruta2+'\',\''+bus2+'\',to_date(\''+fecha+'\', \'dd/mm/yyyy\'),30);';
+		alert(query);
 		//socket.emit('Query4', {msg:query});
 	}
 

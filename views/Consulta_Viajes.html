@@ -65,7 +65,7 @@
  		var lol =$('#lol').val();
 		socket.emit('Q1', { msg:lol});
 		socket.emit('Query2', { msg:lol});
-		//socket.emit('Query3', { msg:lol});
+		socket.emit('Query3', { msg:lol});
 	}
       socket.on('res1', function (data1) {
 $('#DatosFactura').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Datos Factura</div><table class=\"table\"><tr><td>Fecha Factura</td><td>Monto</td></tr><tr><td>"+data1.msg.rows[0].to_char+"</td><td>"+data1.msg.rows[0].total+"</td></tr></table>");
@@ -74,10 +74,18 @@ $('#DatosFactura').html("<div class=\"panel panel-default\"><div class=\"panel-h
 $('#DatosCliente').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Datos Cliente</div><table class=\"table\"><tr><td>Nombre</td><td>Nit</td></tr><tr><td>"+data1.msg.rows[0].nombre+"</td><td>"+data1.msg.rows[0].nit+"</td></tr></table>");
 			});
 	  socket.on('res3', function (data1) {
+	 // alert(data1.msg.rows.length);
 
-$('#Rutas').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Datos Cliente</div><table class=\"table\"><tr><td>Nombre</td><td>Nit</td></tr><tr><td>"+data1.msg.rows[0].no_tramo+"</td><td>"+data1.msg.rows[0].nombre+"</td></tr></table>");
+var i=0;
+	var len=data1.msg.rows.length;	
+	for(i=0;i<len;i++){
+$('#Rutas').append("<div class=\"panel panel-default\"><div class=\"panel-heading\">Rutas</div><table class=\"table\"><tr><td># Tramo</td><td>Nombre</td><td>Distancia Origen</td><td>Costo</td></tr><tr><td>"+data1.msg.rows[i].no_tramo+"</td><td>"+data1.msg.rows[i].nombre+"</td><td>"+data1.msg.rows[i].distancia_origen+"</td><td>"+data1.msg.rows[i].costo+"</td></tr></table>");
+	}
+	});
 
-			});
+
+//$('#Rutas').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Rutas</div><table class=\"table\"><tr><td>Nombre</td><td>Nit</td></tr><tr><td>"+data1.msg.rows[0].no_tramo+"</td><td>"+data1.msg.rows[0].nombre+"</td></tr></table>");
+
 
 
 </script>

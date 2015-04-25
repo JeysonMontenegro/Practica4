@@ -100,12 +100,7 @@ io.sockets.on('connection', function (socket) {
 socket.on('Query3', function (data1) {
 
 		var client = new pg.Client(conString);
-		var qu= "select rd.NO_Tramo,d.Nombre,rd.Distancia_Origen,(sub2.Costo_Kilometro*rd.Distancia_Origen)\
-from Ruta_destino rd,Destino d,\
-(select ID_ruta\
-from ticket where ID_Factura="+data1.msg+")as sub1,(Select Costo_Kilometro\
-from bus where ID_bus=(select ID_bus  from Reservacion INNEr Join (select ID_Reservacion  from ticket  where ID_Factura="+data1.msg+") as sub1 ON Reservacion.ID_Reservacion=sub1.ID_reservacion))as sub2\
-WHERE sub1.ID_Ruta=rd.ID_Ruta and d.ID_Destino=rd.ID_DEstino;"
+		var qu= 'select rd.NO_Tramo,d.Nombre,rd.Distancia_Origen,(sub2.Costo_Kilometro*rd.Distancia_Origen) from Ruta_destino rd,Destino d, (select ID_ruta from ticket where ID_Factura= 1 )as sub1,(Select Costo_Kilometro from bus where ID_bus=(select ID_bus  from Reservacion INNEr Join (select ID_Reservacion  from ticket where ID_Factura= 1 ) as sub1 ON Reservacion.ID_Reservacion=sub1.ID_reservacion))as sub2 WHERE sub1.ID_Ruta=rd.ID_Ruta and d.ID_Destino=rd.ID_DEstino;'
 			
 		client.connect(function(err) {
   		if(err) {
@@ -122,7 +117,7 @@ WHERE sub1.ID_Ruta=rd.ID_Ruta and d.ID_Destino=rd.ID_DEstino;"
 		});     
 	});
 
-	socket.on('Q4', function (data1) {
+	socket.on('Query4', function (data1) {
 
 		var client = new pg.Client(conString);
 		client.connect(function(err) {
@@ -134,7 +129,7 @@ WHERE sub1.ID_Ruta=rd.ID_Ruta and d.ID_Destino=rd.ID_DEstino;"
     		  return console.error('error running query', err);
    			 }
   		  console.log(result);
-    		io.sockets.emit('res4', { msg: result});
+    		//io.sockets.emit('res4', { msg: result});
    		 client.end();
  		 });
 		});     

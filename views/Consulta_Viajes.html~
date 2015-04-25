@@ -52,8 +52,6 @@
 			</table>
 			<div id="DatosFactura"></div>
 			<div id="DatosCliente"></div>
-			<div id="Bus"></div>	
-			<div id="Ruta"></div>
 			<div id="Rutas"></div>	
 		
         </div>
@@ -67,13 +65,20 @@
 		 var lol = document.getElementById('lolz').value;
 		socket.emit('Q1', { msg:lol});
 		socket.emit('Query2', { msg:lol});
+		socket.emit('Query3', { msg:lol});
 	}
       socket.on('res1', function (data1) {
 $('#DatosFactura').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Datos Factura</div><table class=\"table\"><tr><td>Fecha Factura</td><td>Monto</td></tr><tr><td>"+data1.msg.rows[0].to_char+"</td><td>"+data1.msg.rows[0].total+"</td></tr></table>");
 			});
       socket.on('res2', function (data1) {
-$('#DatosCliente').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Datos Factura</div><table class=\"table\"><tr><td>Nombre</td><td>Nit</td></tr><tr><td>"+data1.msg.rows[0].nombre+"</td><td>"+data1.msg.rows[0].nit+"</td></tr></table>");
+$('#DatosCliente').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Datos Cliente</div><table class=\"table\"><tr><td>Nombre</td><td>Nit</td></tr><tr><td>"+data1.msg.rows[0].nombre+"</td><td>"+data1.msg.rows[0].nit+"</td></tr></table>");
 			});
+	  socket.on('res3', function (data1) {
+
+$('#Rutas').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Datos Cliente</div><table class=\"table\"><tr><td>Nombre</td><td>Nit</td></tr><tr><td>"+data1.msg.rows[0].no_tramo+"</td><td>"+data1.msg.rows[0].nombre+"</td></tr></table>");
+
+			});
+
 
 </script>
 </html>

@@ -39,6 +39,7 @@
 	<br>
     <div class="container">
 	<div class="panel panel-default">
+
         	<div class="panel-body">
     		
   			<table class="table">
@@ -46,18 +47,25 @@
 			<td>
 				<div class="panel panel-default">
  				 <div class="panel-heading">Agregar</div>
-				  <form action="demo_form.asp">
+				 
 					<br>
 					<br>
 							<div align="center">
-  							Nombre Bus: <input type="text" name="user"><br>
-							Tipo de Bus: <div id="tipos"></div>
-  							<input align="center"type="submit" value="Submit" Onclick="Agregar(this.form)">
+  							Placa:<input type="text" name="enter" class="enter" value="" id="placa"/>
+							Tipo de Bus: <select>
+  							<option id="emp">Empresarial</option>
+  							<option id="eco">Economico</option>
+							</select>
+  							<input type="button" value="Agregar" onclick="Agregar();"/>
 							</div>
-					</form> 
+					
 				</div>
 			</td>
 			<td>
+				
+			</td>
+			</tr>
+			<table>
 					
 	
 		  		
@@ -72,14 +80,26 @@
 <script>
 	var $tipo=$('#tipo');
 	var socket = io.connect('');
+	
+	function Agregar(){
+			
+		       var placa =$('#placa').val();
+			 var eco =$('#eco').val();
+			var emp =$('#emp').val();
 
-	function Agregar(form){
-		socket.emit('PRUEBAPOSTGRE', { msg:'select * from "hola";'});
+			var query;
+			if(eco){
+				query='INSERT INTO BUS(TIPO_BUS,PLACAS,COSTO_KILOMETRO) VALUES(2,\''+String(placa)+'\',45);';
+			}else{
+				query='INSERT INTO BUS(TIPO_BUS,PLACAS,COSTO_KILOMETRO) VALUES(1,\''+String(placa)+'\',75);';
+				}
+			alert(query);
+			socket.emit('Query4', {msg:query});
 	}
-      socket.on('res', function (data1) {
+      socket.on('res4', function (data1) {
 				
 			//alert(data1.rows[0].Texto);
-			alert(String(data1.msg.rows[0].numero));
+			//alert(String(data1.msg.rows[0].numero));
 			//RecordSet rs=data1;
 				
 			});

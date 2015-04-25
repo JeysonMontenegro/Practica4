@@ -1,0 +1,90 @@
+<hmtl>
+<head>
+      	<title>Practica4 201211472</title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="http://code.jquery.com/jquery.js"></script>
+</head>
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Practica4_201211472</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+		 <li><a href="/Consulta_Viajes">Consulta Viajes</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	<br>
+	<br>
+	<br>
+    <div class="container">
+	<div class="panel panel-default">
+        	<div class="panel-body">
+    			
+			<table class="table">
+			<tr>
+			<td>
+				<h1>Practica 4 Bases de Datos 1 </h1>	
+				<br>			
+				<h1>Jeyson Montenegro 201211472</h1>
+			</td>
+			<td>
+						
+					<div class="panel panel-success">
+					<div class="panel-heading">Login Admin</div>
+					<br>
+					<br>
+					<FORM NAME="myform" ACTION="" METHOD="GET">
+						 <form action="demo_form.asp">
+							<div align="center">
+  							User: <input type="text" name="user"><br>
+  							Pass: <input type="password" name="pass"><br>
+							 <li><a href="/ABC_Buses">Login</a></li>
+  						<!--	<input align="center"type="submit" value="Submit" ><a href="/ABC_Buses">-->
+							</div>
+						</form> 
+						<br>
+						<br>
+						<br>
+						<br>
+					
+			</td>
+			</tr>
+			</table>
+  		</div>
+ 	
+      </div>
+    </div>
+
+  </body>
+<script>
+function Validar(form){
+		var user=form.user.value;
+		var pass=form.pass.value;
+		
+		if(user=="admin" && pass=="admin"){
+					//window.location = "http://new-website.com";
+					//window.location.href = "http://new-website.com";
+					//request.session.returnTo = request.path; 
+					//window.location.href = "/ABC_Buses.html";
+					window.location.replace("/ABC_Buses.html");
+					//window.location.replace("/ABC_Buses");
+					//res.render(/ABC_Buses');
+		}
+	}
+</script>
+</html>

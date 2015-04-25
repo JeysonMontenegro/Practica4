@@ -60,7 +60,7 @@ io.sockets.on('connection', function (socket) {
 	socket.on('Q1', function (data1) {
 
 		var client = new pg.Client(conString);
-		var qu='select Fecha,Total From Factura where ID_Factura='+data1.msg+';'
+		var qu='select TO_CHAR(Fecha, \'dd/MM/YYYY\'),Total From Factura where ID_Factura='+data1.msg+';'
 		client.connect(function(err) {
   		if(err) {
    		 return console.error('could not connect to postgres', err);

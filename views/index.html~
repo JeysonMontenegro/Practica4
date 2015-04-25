@@ -53,8 +53,8 @@
 							<div align="center">
   							User: <input type="text" name="user"><br>
   							Pass: <input type="password" name="pass"><br>
-							
-  							<input align="center"type="submit" value="Submit" ><a href="/ABC_Buses">
+							 <li><a href="/ABC_Buses">Login</a></li>
+  						<!--	<input align="center"type="submit" value="Submit" ><a href="/ABC_Buses">-->
 							</div>
 						</form> 
 						<br>

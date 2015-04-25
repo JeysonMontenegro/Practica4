@@ -40,23 +40,21 @@
 			<td>
 				<div class="panel panel-default">
  				 <div class="panel-heading">Mostar </div>
-				  <form action="demo_form.asp">
 					<br>
 					<br>
 							<div align="center">
-							ID Factura: <input type="text" name="Factura"><br>
-  				<input align="center"type="submit" value="Mostar Datos" Onclick="Mostar(this.form)">
+					Ingrese El No. Factura   <input type="text" name="enter" class="enter" value="" id="lolz"/>
+    							<input type="button" value="Buscar" onclick="Mostrar();"/>
 							</div>
-					</form> 
 				</div>
 			</td>
 			</tr>
-			<tr>
-				<td>
-				<div id="Salida Datos"></div>
-				</td>			
-			</tr>
-			</table>		
+			</table>
+			<div id="DatosFactura"></div>
+			<div id="DatosCliente"></div>
+			<div id="Bus"></div>	
+			<div id="Ruta"></div>
+			<div id="Rutas"></div>	
 		
         </div>
     </div>
@@ -64,18 +62,15 @@
   </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-	var $suspedidos=$('#suspendidos');
 	var socket = io.connect('');
-
-	function KILL(){
-		//alert('Mierda');
-	       //$suspedidos.text('HOLA');
-		socket.emit('PRUEBAPOSTGRE', { msg:'select * from "hola";'});
+	function Mostrar(){
+		 var lol = document.getElementById('lolz').value;
+		socket.emit('Q1', { msg:lol});
 	}
-      socket.on('res', function (data1) {
-				
+      socket.on('res1', function (data1) {
+$('#DatosFactura').html("<table class=\"table\"><tr><td>"+data1.msg.rows[0].fecha.format("dd mmm yyyy")+"</td><td>"+data1.msg.rows[0].total+"</td></tr></table>");
 			//alert(data1.rows[0].Texto);
-			alert(String(data1.msg.rows[0].numero));
+			//alert(String(data1.msg.rows[0].numero));
 			//RecordSet rs=data1;
 				
 			});

@@ -40,14 +40,12 @@
 			<td>
 				<div class="panel panel-default">
  				 <div class="panel-heading">Mostar </div>
-				  <form action="demo_form.asp">
 					<br>
 					<br>
 							<div align="center">
-							ID Factura: <input type="text" name="Factura"><br>
-  				<input align="center"type="submit" value="Mostar Datos" Onclick="Mostar(this.form)">
+					Ingrese El No. Factura   <input type="text" name="enter" class="enter" value="" id="lolz"/>
+    							<input type="button" value="Buscar" onclick="Mostrar();"/>
 							</div>
-					</form> 
 				</div>
 			</td>
 			</tr>
@@ -65,12 +63,12 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
 	var socket = io.connect('');
-
-	function Mostrar(form){
-		socket.emit('Q1', { msg:form.Factura.value});
+	function Mostrar(){
+		 var lol = document.getElementById('lolz').value;
+		socket.emit('Q1', { msg:lol});
 	}
       socket.on('res1', function (data1) {
-				$('#DatosFactura').html("<table><tr>"+data1.msg.rows[0].fecha+"<td></td>"+data1.msg.rows[0].total+"<td></td></tr></table>");
+$('#DatosFactura').html("<table class=\"table\"><tr><td>"+data1.msg.rows[0].to_char+"</td><td>"+data1.msg.rows[0].total+"</td></tr></table>");
 			//alert(data1.rows[0].Texto);
 			//alert(String(data1.msg.rows[0].numero));
 			//RecordSet rs=data1;

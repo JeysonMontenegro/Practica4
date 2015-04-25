@@ -52,17 +52,48 @@
 					<br>
 							<div align="center">
   							Placa:<input type="text" name="enter" class="enter" value="" id="placa"/>
+							<br>
 							Tipo de Bus: <select>
   							<option id="emp">Empresarial</option>
   							<option id="eco">Economico</option>
 							</select>
+							<br>
   							<input type="button" value="Agregar" onclick="Agregar();"/>
 							</div>
 					
 				</div>
 			</td>
 			<td>
-				
+						<div class="panel panel-default">
+ 				 <div class="panel-heading">Editar</div>
+				 
+					<br>
+					<br>
+							<div align="center">
+  							Placa:<input type="text" name="enter" class="enter" value="" id="placaEd"/>
+							<br>
+							Tipo de Bus: <select>
+  							<option id="emp1">Empresarial</option>
+  							<option id="eco1">Economico</option>
+							</select>
+							<br>
+  							<input type="button" value="Editar" onclick="Editar();"/>
+							</div>
+					
+				</div>
+			</td>
+			<td>
+							<div class="panel panel-default">
+ 				 <div class="panel-heading">Eliminar</div>
+				 
+					<br>
+					<br>
+							<div align="center">
+  							Placa:<input type="text" name="enter" class="enter" value="" id="placaEl"/>
+  							<input type="button" value="Eliminar" onclick="Eliminar();"/>
+							</div>
+					
+				</div>
 			</td>
 			</tr>
 			<table>
@@ -88,7 +119,7 @@
 			var emp =$('#emp').val();
 
 			var query;
-			if(eco){
+			if(eco!=""){
 				query='INSERT INTO BUS(TIPO_BUS,PLACAS,COSTO_KILOMETRO) VALUES(2,\''+String(placa)+'\',45);';
 			}else{
 				query='INSERT INTO BUS(TIPO_BUS,PLACAS,COSTO_KILOMETRO) VALUES(1,\''+String(placa)+'\',75);';
@@ -96,6 +127,28 @@
 			alert(query);
 			socket.emit('Query4', {msg:query});
 	}
+function Editar(){
+	       var placa =$('#placaEd').val();
+			 var eco1 =$('#eco1').val();
+			var emp1 =$('#emp1').val();
+
+			var query;
+			if(eco1!=""){
+			
+				query='Update bus set tipo_bus= 2 where placas=\''+String(placa)+'\';';
+			}else{
+				query='Update bus set tipo_bus= 1 where placas=\''+String(placa)+'\';';
+				}
+			alert(query);
+			socket.emit('Query4', {msg:query});
+	}
+function Eliminar(){
+			
+		       var placa =$('#placaEl').val();
+			var query='delete from bus where placas=\''+String(placa)+'\';';
+			socket.emit('Query4', {msg:query});
+	}
+	
       socket.on('res4', function (data1) {
 				
 			//alert(data1.rows[0].Texto);

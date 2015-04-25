@@ -43,7 +43,7 @@
 					<br>
 					<br>
 							<div align="center">
-					Ingrese El No. Factura   <input type="text" name="enter" class="enter" value="" id="lolz"/>
+					Ingrese El No. Factura   <input type="text" name="enter" class="enter" value="" id="lol"/>
     							<input type="button" value="Buscar" onclick="Mostrar();"/>
 							</div>
 				</div>
@@ -62,9 +62,9 @@
 <script>
 	var socket = io.connect('');
 	function Mostrar(){
-		 var lol = document.getElementById('lolz').value;
-		socket.emit('Q1', { msg:lol});
-		socket.emit('Query2', { msg:lol});
+ 		var lol =$('#lol').val();
+		//socket.emit('Q1', { msg:lol});
+		//socket.emit('Query2', { msg:lol});
 		socket.emit('Query3', { msg:lol});
 	}
       socket.on('res1', function (data1) {

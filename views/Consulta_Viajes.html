@@ -51,12 +51,12 @@
 				</div>
 			</td>
 			</tr>
-			<tr>
-				<td>
-				<div id="Salida Datos"></div>
-				</td>			
-			</tr>
-			</table>		
+			</table>
+			<div id="DatosFactura"></div>
+			<div id="DatosCliente"></div>
+			<div id="Bus"></div>	
+			<div id="Ruta"></div>
+			<div id="Rutas"></div>	
 		
         </div>
     </div>
@@ -64,18 +64,15 @@
   </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-	var $suspedidos=$('#suspendidos');
 	var socket = io.connect('');
 
-	function KILL(){
-		//alert('Mierda');
-	       //$suspedidos.text('HOLA');
-		socket.emit('PRUEBAPOSTGRE', { msg:'select * from "hola";'});
+	function Mostrar(form){
+		socket.emit('Q1', { msg:form.Factura.value});
 	}
-      socket.on('res', function (data1) {
-				
+      socket.on('res1', function (data1) {
+				$('#DatosFactura').html("<table><tr>"+data1.msg.rows[0].fecha+"<td></td>"+data1.msg.rows[0].total+"<td></td></tr></table>");
 			//alert(data1.rows[0].Texto);
-			alert(String(data1.msg.rows[0].numero));
+			//alert(String(data1.msg.rows[0].numero));
 			//RecordSet rs=data1;
 				
 			});

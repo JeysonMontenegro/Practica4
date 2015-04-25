@@ -44,9 +44,8 @@
 					<br>
 					<br>
 							<div align="center">
-  							ID Cliente: <input type="text" name="ID"><br>
-							ID Reservacion: <input type="text" name="IDR"><br>
-  				<input align="center"type="submit" value="Mostar Saldo y Cancelarlo" Onclick="Cancelar(this.form)">
+							ID Factura: <input type="text" name="Factura"><br>
+  				<input align="center"type="submit" value="Mostar Datos" Onclick="Mostar(this.form)">
 							</div>
 					</form> 
 				</div>
@@ -54,7 +53,7 @@
 			</tr>
 			<tr>
 				<td>
-				<div id="MostarTotal"></div>
+				<div id="Salida Datos"></div>
 				</td>			
 			</tr>
 			</table>		

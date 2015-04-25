@@ -45,14 +45,14 @@
 			<td>
 				<div class="panel panel-default">
  				 <div class="panel-heading">Agregar Destino</div>
-				  <form action="demo_form.asp">
+				 
 					<br>
 					<br>
 							<div align="center">
   							Nombre Destino: <input type="text" name="destino"><br>
-  					<input align="center"type="submit" value="Agregar" Onclick="AgregarDestino(this.form)">
+  					<input type="button" value="Agregar" onclick="AgregarDestino();"/>
 							</div>
-					</form> 
+					
 				</div>
 			</td>
 			</tr>
@@ -60,14 +60,14 @@
 			<td>
 				<div class="panel panel-default">
  				 <div class="panel-heading">Agregar Ruta</div>
-				  <form action="demo_form.asp">
+				
 					<br>
 					<br>
 							<div align="center">
   							Nombre Ruta: <input type="text" name="ruta"><br>
-  					<input align="center"type="submit" value="Agregar" Onclick="AgregarRuta(this.form)">
+  					<input type="button" value="Agregar" onclick="AgregarRuta();"/>
 							</div>
-					</form> 
+					
 				</div>	
 			</td>
 			</tr>
@@ -75,16 +75,16 @@
 			<td>
 					<div class="panel panel-default">
  				 <div class="panel-heading">Asignar Destinos a Ruta</div>
-				  <form action="demo_form.asp">
 					<br>
 					<br>
 							<div align="center">
-							Nombre Ruta: <div id="Aruta"></div>
-  							Nombre Destino: <div id="Adestino"></div>
-							Distancia de Origen: <div id="distancia"></div>
-  							<input align="center"type="submit" value="Agregar" Onclick="AgregarDR(this.form)">
+							Nombre Ruta: <input type="text" name="ruta1"><br>
+  							Nombre Destino: <input type="text" name="destino1"><br>
+							# de tramo de Ruta: <input type="text" name="tramo"><br>
+							Distancia de Origen: <input type="text" name="distancia"><br>
+  							<input type="button" value="Agregar" onclick="AgregarDestinoDR();"/>
 							</div>
-					</form> 
+				
 				</div>
 			</td>
 			</tr>
@@ -92,16 +92,15 @@
 			<td>
 					<div class="panel panel-default">
  				 <div class="panel-heading">Asignar Bus a Ruta</div>
-				  <form action="demo_form.asp">
 					<br>
 					<br>
 							<div align="center">
-  							Nombre Bus: <div id="ABus"></div>
-							Nombre Ruta: <div id="AAruta"></div>
-							Fecha:<div id="fecha"></div>
-  							<input align="center"type="submit" value="Agregar" Onclick="AgregarBR(this.form)">
+  							Nombre Bus: <input type="text" name="bus2"><br>
+							Nombre Ruta: <input type="text" name="ruta2"><br>
+							Fecha:<input type="text" name="fecha"><br>
+  							<input type="button" value="Agregar" onclick="AgregarDestinoBR();"/>
 							</div>
-					</form> 
+					
 				</div>
 			</td>
 			</tr>
@@ -116,18 +115,27 @@
 	var $suspedidos=$('#suspendidos');
 	var socket = io.connect('');
 
-	function KILL(){
-		//alert('Mierda');
-	       //$suspedidos.text('HOLA');
-		socket.emit('PRUEBAPOSTGRE', { msg:'select * from "hola";'});
+	function AgregarDestino(){
+	 var destino =$('#destino').val();
+	var query='INSERT INTO DESTINO(NOMBRE) VALUES (\''+destino+'\');'
 	}
-      socket.on('res', function (data1) {
-				
-			//alert(data1.rows[0].Texto);
-			alert(String(data1.msg.rows[0].numero));
-			//RecordSet rs=data1;
-				
-			});
+	function AgregarRuta(){
+ 	var ruta =$('#ruta').val();
+	var query='INSERT INTO RUTA(NOMBRE) VALUES(\''+ruta+'\');'
+	}
+	function AgregarDestinoDR(){
+	var ruta =$('#ruta1').val();
+	var destino =$('#destino1').val();
+ 	var distancia =$('#distancia').val();
+	var tramo =$('#tramo').val();
+	var query='INSERT INTO RUTA_DESTINO(ID_RUTA,ID_DESTINO,NO_TRAMO,TIEMPO_ORIGEN,DISTANCIA_ORIGEN) VALUES(\''+ruta+'\',\''+destino+'\',\''+tramo+'\','11:30',\''+distancia+'\');';
+	}
+	function AgregarDestinoBR(){
+		var bus2 =$('#bus2').val();
+		var ruta2 =$('#ruta2').val();
+ 		var fecha =$('#fecha').val();
+		var query='Insert Into ASignacion_Ruta(ID_Ruta,ID_BUs,FEcha,Cupo_Actual) Values(\''+ruta2+'\',\''+bus2+'\',to_date(\''+fecha+'\', \'dd/mm/yyyy\'),30);';
+	}
 
 </script>
 </html>

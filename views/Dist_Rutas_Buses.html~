@@ -1,7 +1,7 @@
 <hmtl>
 <head>
-    	<title>Practica4 201211472</title>
-  	<meta charset="utf-8">
+    	<title>Practica 4 201211472</title>
+ 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -49,8 +49,8 @@
 					<br>
 					<br>
 							<div align="center">
-  							Nombre Destino: <input type="text" name="destino"><br>
-  					<input type="button" value="Agregar" onclick="AgregarDestino();"/>
+  							Nombre Destino: <input type="text" name="enter" class="enter" value="" id="destino"/>
+  							<input type="button" value="Agregar" onclick="AgregarDestino();"/>
 							</div>
 					
 				</div>
@@ -64,7 +64,7 @@
 					<br>
 					<br>
 							<div align="center">
-  							Nombre Ruta: <input type="text" name="ruta"><br>
+  							Nombre Ruta: <input type="text" name="enter" class="enter" value="" id="ruta"/>
   					<input type="button" value="Agregar" onclick="AgregarRuta();"/>
 							</div>
 					
@@ -78,11 +78,11 @@
 					<br>
 					<br>
 							<div align="center">
-							Nombre Ruta: <input type="text" name="ruta1"><br>
-  							Nombre Destino: <input type="text" name="destino1"><br>
-							# de tramo de Ruta: <input type="text" name="tramo"><br>
-							Distancia de Origen: <input type="text" name="distancia"><br>
-  							<input type="button" value="Agregar" onclick="AgregarDestinoDR();"/>
+							ID Ruta: <input type="text" name="enter" class="enter" value="" id="ruta1"/><br>
+  							ID Destino: <input type="text" name="enter" class="enter" value="" id="destino1"/><br>
+							# de tramo de Ruta: <input type="text" name="enter" class="enter" value="" id="tramo"/><br>
+							Distancia de Origen: <input type="text" name="enter" class="enter" value="" id="distancia"/><br>
+  							<input type="button" value="Agregar" onclick="AgregarDestinoDR();"/><br>
 							</div>
 				
 				</div>
@@ -112,29 +112,33 @@
   </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-	var $suspedidos=$('#suspendidos');
 	var socket = io.connect('');
-
 	function AgregarDestino(){
-	 var destino =$('#destino').val();
-	var query='INSERT INTO DESTINO(NOMBRE) VALUES (\''+destino+'\');'
+	var destino =$('#destino').val();
+	var query='INSERT INTO DESTINO(NOMBRE) VALUES (\''+destino+'\');';
+	socket.emit('Query4', {msg:query});
 	}
+
 	function AgregarRuta(){
  	var ruta =$('#ruta').val();
-	var query='INSERT INTO RUTA(NOMBRE) VALUES(\''+ruta+'\');'
+	var query='INSERT INTO RUTA(NOMBRE) VALUES(\''+ruta+'\');';
+	socket.emit('Query4', {msg:query});
 	}
 	function AgregarDestinoDR(){
-	var ruta =$('#ruta1').val();
-	var destino =$('#destino1').val();
- 	var distancia =$('#distancia').val();
-	var tramo =$('#tramo').val();
-	var query='INSERT INTO RUTA_DESTINO(ID_RUTA,ID_DESTINO,NO_TRAMO,TIEMPO_ORIGEN,DISTANCIA_ORIGEN) VALUES(\''+ruta+'\',\''+destino+'\',\''+tramo+'\','11:30',\''+distancia+'\');';
+		  var ruta =$('#ruta1').val();
+		  var destino =$('#destino1').val();
+ 		 var distancia =$('#distancia').val();
+		 var tramo =$('#tramo').val();
+		 var query='INSERT INTO RUTA_DESTINO(ID_RUTA,ID_DESTINO,NO_TRAMO,TIEMPO_ORIGEN,DISTANCIA_ORIGEN) VALUES(\''+ruta+'\',\''+destino+'\',\''+tramo+'\',11:30,\''+distancia+'\');';
+		alert(query);
+		//socket.emit('Query4', {msg:query});
 	}
 	function AgregarDestinoBR(){
-		var bus2 =$('#bus2').val();
-		var ruta2 =$('#ruta2').val();
- 		var fecha =$('#fecha').val();
-		var query='Insert Into ASignacion_Ruta(ID_Ruta,ID_BUs,FEcha,Cupo_Actual) Values(\''+ruta2+'\',\''+bus2+'\',to_date(\''+fecha+'\', \'dd/mm/yyyy\'),30);';
+		//var bus2 =$('#bus2').val();
+		//var ruta2 =$('#ruta2').val();
+ 		//var fecha =$('#fecha').val();
+		//var query='Insert Into ASignacion_Ruta(ID_Ruta,ID_BUs,FEcha,Cupo_Actual) Values(\''+ruta2+'\',\''+bus2+'\',to_date(\''+fecha+'\', \'dd/mm/yyyy\'),30);';
+		//socket.emit('Query4', {msg:query});
 	}
 
 </script>

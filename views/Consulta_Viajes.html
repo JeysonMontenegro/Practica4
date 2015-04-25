@@ -66,13 +66,13 @@
 	function Mostrar(){
 		 var lol = document.getElementById('lolz').value;
 		socket.emit('Q1', { msg:lol});
+		socket.emit('Query2', { msg:lol});
 	}
       socket.on('res1', function (data1) {
-$('#DatosFactura').html("<table class=\"table\"><tr><td>"+data1.msg.rows[0].to_char+"</td><td>"+data1.msg.rows[0].total+"</td></tr></table>");
-			//alert(data1.rows[0].Texto);
-			//alert(String(data1.msg.rows[0].numero));
-			//RecordSet rs=data1;
-				
+$('#DatosFactura').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Datos Factura</div><table class=\"table\"><tr><td>Fecha Factura</td><td>Monto</td></tr><tr><td>"+data1.msg.rows[0].to_char+"</td><td>"+data1.msg.rows[0].total+"</td></tr></table>");
+			});
+      socket.on('res2', function (data1) {
+$('#DatosCliente').html("<div class=\"panel panel-default\"><div class=\"panel-heading\">Datos Cliente</div><table class=\"table\"><tr><td>Nombre</td><td>Nit</td></tr><tr><td>"+data1.msg.rows[0].nombre+"</td><td>"+data1.msg.rows[0].nit+"</td></tr></table>");
 			});
 
 </script>
